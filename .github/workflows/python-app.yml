@@ -1,0 +1,40 @@
+name: ItemAdder GUI Generator
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python_version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyyaml
+
+    - name: Run Generator
+      # Wir fügen --auto hinzu, damit das Skript nicht nach 'input()' fragt
+      run: python generator.py --auto
+
+    - name: Commit and Push changes
+      # Dieser Teil speichert die generierten .yml Dateien automatisch in dein Repo zurück
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "Auto-generated ItemAdder GUIs" || exit 0
+        git push
