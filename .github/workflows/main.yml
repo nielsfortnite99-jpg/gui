@@ -1,0 +1,26 @@
+name: ItemAdder GUI Validator
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python_version: '3.10'
+
+      - name: Run Generator Check
+        run: |
+          if [ -f generator.py ]; then
+            python generator.py --check-only
+            echo "Generator ist bereit!"
+          else
+            echo "Kein Generator gefunden, überspringe..."
+          fi
