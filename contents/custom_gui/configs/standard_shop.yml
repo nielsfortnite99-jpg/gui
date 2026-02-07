@@ -1,0 +1,36 @@
+info:
+  namespace: custom_gui
+guis:
+  standard_shop:
+    title: §8» §6__Shop__
+    type: CHEST
+    rows: 6
+    static_items:
+      border:
+        item: minecraft:black_stained_glass_pane
+        slots:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 45
+        - 46
+        - 47
+        - 48
+        - 49
+        - 50
+        - 51
+        - 52
+        - 53
+      close_button:
+        item: minecraft:barrier
+        slot: 49
+        display_name: §cSchließen
+        actions:
+          click:
+          - close

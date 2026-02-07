@@ -1,0 +1,15 @@
+info:
+  namespace: custom_gui
+guis:
+  warp_menu:
+    title: §8» §9Warp Menü
+    type: CHEST
+    rows: 3
+    static_items:
+      spawn:
+        item: minecraft:nether_star
+        slot: 13
+        display_name: §aSpawn
+        actions:
+          click:
+          - 'console: warp spawn %player%'
