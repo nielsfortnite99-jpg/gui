@@ -1,8 +1,6 @@
-name: ItemAdder GUI Validator
+name: ItemAdder GUI Builder
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -16,11 +14,9 @@ jobs:
         with:
           python_version: '3.10'
 
-      - name: Run Generator Check
-        run: |
-          if [ -f generator.py ]; then
-            python generator.py --check-only
-            echo "Generator ist bereit!"
-          else
-            echo "Kein Generator gefunden, überspringe..."
-          fi
+      - name: Install Dependencies
+        run: pip install pyyaml
+
+      - name: Run Generator
+        # Wir sagen dem Skript hier direkt, was es tun soll, ohne Fragen zu stellen
+        run: python generator.py --auto
